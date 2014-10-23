@@ -12,11 +12,11 @@ define appstore::app(
   require appstore
 
   $path = "/Applications/${title}.app"
-  $helper = "${boxen::config::home}/appstore.app"
+  $helper = "${appstore::home}/appstore.app"
   $password = appstore_password()
 
   exec { "appstore-app-${title}":
-    command     => "open -W '${helper}' && [ -d '${path}' ]",
+    command     => "/bin/bash -c \"open -W '${helper}' && [ -d '${path}' ]\"",
     creates     => $path,
     timeout     => 0,
     environment => [

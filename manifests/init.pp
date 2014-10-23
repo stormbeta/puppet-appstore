@@ -6,11 +6,10 @@ class appstore(
   $store    = $appstore::store,
   $appleid  = $appstore::appleid,
   $password = $appstore::password,
+  $home     = $appstore::home,
 ) {
 
-  include boxen::config
-
-  file { "${boxen::config::home}/appstore.app":
+  file { "${appstore::home}/appstore.app":
     ensure  => directory,
     source  => 'puppet:///modules/appstore/appstore.app',
     recurse => true,
